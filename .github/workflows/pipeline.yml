@@ -21,3 +21,9 @@ jobs:
         run: npm run build
       - name: Test
         run: npm run test
+      - name: End-to-end tests
+        run: |
+          npx playwright install --with-deps
+          npm run test:e2e
+
+          
