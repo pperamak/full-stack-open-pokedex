@@ -34,7 +34,8 @@ jobs:
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-latest
-    steps:
+    steps:     
+      - uses: actions/checkout@v4 
       - name: Bumb version and push tag
         if: ${{ github.event_name == 'push' }}
         uses: anothrNick/github-tag-action@1.71.0
