@@ -45,7 +45,7 @@ jobs:
         env:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          args: "❌ Build failed. The commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}) by ${{ github.actor }} broke the build.""
+          args: "Build failed. The commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}) by ${{ github.actor }} broke the build.""
           
         
   tag_release:
