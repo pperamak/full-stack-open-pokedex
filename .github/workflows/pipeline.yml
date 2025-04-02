@@ -35,7 +35,7 @@ jobs:
         uses: "Ilshidur/action-discord@08d9328877d6954120eef2b07abbc79249bb6210"
         if: success()
         env:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: 'The project {{ EVENT_PAYLOAD.repository.full_name }} has been deployed.'
 
@@ -43,7 +43,7 @@ jobs:
         uses: "Ilshidur/action-discord@08d9328877d6954120eef2b07abbc79249bb6210"
         if: failure()
         env:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
           args: "❌ Build failed. The commit [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}) by ${{ github.actor }} broke the build."
           
