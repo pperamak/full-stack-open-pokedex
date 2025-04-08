@@ -1,0 +1,29 @@
+on:
+  schedule:
+    - cron: '42 * * * *'
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the health-check-URL
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: https://full-stack-open-pokedex-djix.onrender.com/health
+      
+      - name: Health check pass notification
+        uses: "Ilshidur/action-discord@08d9328877d6954120eef2b07abbc79249bb6210"
+        if: success()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: 'The service at https://full-stack-open-pokedex-djix.onrender.com is healthy'
+  
+      - name: Health check fail notification
+        uses: "Ilshidur/action-discord@08d9328877d6954120eef2b07abbc79249bb6210"
+        if: failure()
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: "❌ Health check for https://full-stack-open-pokedex-djix.onrender.com failed"
+            
